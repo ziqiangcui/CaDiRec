@@ -110,7 +110,7 @@ class Trainer:
             sas_rec_loss = self.model.calculate_rec_loss(input_ids, target_pos, target_neg)
             
             
-            if epoch <= self.args.warm_up_epochs:
+            if epoch <= self.args.warm_up_epochs: # warm_up_epochs=-1 denotes not using
                 sas_cl_loss = 0.0
                 loss = sas_rec_loss + self.args.gamma * diff_mse_loss + self.args.beta * diff_nll_loss
             else:
