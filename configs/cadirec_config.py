@@ -53,10 +53,10 @@ def get_config():
     parser.add_argument("--position_biased_input", type=bool, default=False, help='position_biased_input')
     
     parser.add_argument('--alpha', type=float, default=0.1, help='ratio of constrastive learning loss')
-    parser.add_argument('--beta', type=float, default=0.1, help='ratio of diffusion nll loss')
+    parser.add_argument('--beta', type=float, default=0.2, help='ratio of diffusion nll loss')
     parser.add_argument('--gamma', type=float, default=0.0, help='ratio of diffusion mse loss')
-    parser.add_argument('--mlm_probability_train', type=float, default=0.1, help='mlm_probability for train (rho)')
-    parser.add_argument('--mlm_probability', type=float, default=0.1, help='mlm_probability (rho)')
+    parser.add_argument('--mlm_probability_train', type=float, default=0.2, help='mlm_probability for train')
+    parser.add_argument('--mlm_probability', type=float, default=0.2, help='mlm_probability')
     
     parser.add_argument("--batch_size", type=int, default=256)
     parser.add_argument("--microbatch", type=int, default=0)
