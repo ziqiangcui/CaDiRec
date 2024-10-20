@@ -1,11 +1,14 @@
 ## Introduction
-This is the Pytorch implementation for our CIKM'24 paper: **Context Matters: Enhancing Sequential Recommendation with Context-aware Diffusion-based Contrastive Learning**.
+This is the code for our CIKM'24 paper: 
+
+**Context Matters: Enhancing Sequential Recommendation with Context-aware Diffusion-based Contrastive Learning**.
 
 The code is implemented based on DDPM (https://github.com/lucidrains/denoising-diffusion-pytorch) and DiffuSeq (https://github.com/Shark-NLP/DiffuSeq). Thanks for their work!
 
 ## Environment Dependencies
 - Python 3.8
 - PyTorch 2.0.0
+
 You can refer to `requirements.txt` for the experimental environment we set to use.
 
 ## Run CoLaKG
