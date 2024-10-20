@@ -1,11 +1,11 @@
 import argparse
-from typing import Optional, Tuple, Union, List
+from typing import List
 
 def get_config():
     parser = argparse.ArgumentParser()
     #************SASRec*******************
     parser.add_argument('--gpu_id', type=int, default=0, help='gpu')
-    parser.add_argument("--dataset", default="Toys_and_Games", choices=['ml-1m', 'Beauty', 'Sports_and_Outdoors', 'Yelp','LastFM', 'Toys_and_Games'], help="Choose the dataset")
+    parser.add_argument("--dataset", default="Toys_and_Games", choices=['ml-1m', 'Beauty', 'Sports_and_Outdoors', 'Yelp', 'Toys_and_Games'], help="Choose the dataset")
     parser.add_argument("--model_name", default="diffsas", help="Choose the model")
     parser.add_argument("--model_idx", default="0", help="Choose the idx")
     parser.add_argument("--data_path", default="./data/", help="Choose the dataset path")
