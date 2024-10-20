@@ -8,7 +8,8 @@ import torch.nn.functional as F
 from types import SimpleNamespace
 from utils import q_xt_x0, p_xt
 from .modules import DiffNet, TransformerEncoder, info_nce, mask_correlated_samples
-from huggingface.src.transformers.models.deberta.modeling_deberta import DebertaEncoder
+# from huggingface.src.transformers.models.deberta.modeling_deberta import DebertaEncoder
+from transformers.models.deberta.modeling_deberta import DebertaEncoder
 from torch.nn import BCEWithLogitsLoss, CrossEntropyLoss, MSELoss
 import torch as th
 from utils import (
@@ -134,7 +135,8 @@ class DiffusionRecModel(nn.Module):
         emb_inputs = self.dropout(self.ln_bert(emb_inputs))
 
         input_trans_hidden_states = self.bert_encoder(emb_inputs,attention_mask,output_hidden_states=False,output_attentions=False,return_dict=False,)
-        h = input_trans_hidden_states
+        h = input_trans_hidden_states[0]
+        # print(" debug: ", h.shape)
         h = h.type(x.dtype)
         return h
 

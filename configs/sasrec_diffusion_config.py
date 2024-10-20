@@ -36,7 +36,7 @@ def get_config():
     parser.add_argument('--seed', type=int, default=2024, help='random seed')
     
 
-    # #*************DiffuBert***************
+    # #*************Diffusion***************
     parser.add_argument("--num_hidden_layers", type=int, default=1, help='num_hidden_layers.')
     parser.add_argument("--intermediate_size", type=int, default=128, help='intermediate_size.')
     parser.add_argument("--num_attention_heads", type=int, default=2, help='num_attention_heads.')
@@ -52,7 +52,7 @@ def get_config():
     parser.add_argument("--relative_attention", type=bool, default=True, help='relative_attention')
     parser.add_argument("--position_biased_input", type=bool, default=False, help='position_biased_input')
     
-    # loss ratio
+    # loss
     parser.add_argument('--alpha', type=float, default=1.0, help='ratio of constrastive learning loss')
     parser.add_argument('--beta', type=float, default=0.2, help='ratio of diffusion nll loss')
     parser.add_argument('--gamma', type=float, default=0.0, help='ratio of diffusion mse loss')

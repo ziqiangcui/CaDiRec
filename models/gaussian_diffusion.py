@@ -1,10 +1,3 @@
-"""
-This code started out as a PyTorch port of Ho et al's diffusion models:
-https://github.com/hojonathanho/diffusion/blob/1e0dceb3b3495bbe19116a5e1b3596cd0706c543/diffusion_tf/diffusion_utils_2.py
-
-Docstrings have been added, as well as DDIM sampling and a new collection of beta schedules.
-"""
-
 import enum
 import math
 
@@ -627,19 +620,19 @@ class GaussianDiffusion:
                                    th.tensor([0]).to(x_start_mean.device),
                                    x_start_mean.shape)
       
-        x_start = self._get_x_start(x_start_mean, std) # 对原始emb加了个std?  y0
+        x_start = self._get_x_start(x_start_mean, std) 
        
         if noise is None:
             noise = th.randn_like(x_start)
         
-        # 对x_start加噪声，只对序列中的部分需要替换的id位置加噪声，其他位置保持不变，（t不同加的噪声不同）
+    
         x_t = self.q_sample(x_start, t, noise=noise, mask=input_ids_mask) # reparametrization trick. 
         get_logits = model.model.get_logits  
 
         terms = {}
         # **************mse loss*******************
         target = x_start
-        model_output = model.model.diffusion_reverse(x_t, self._scale_timesteps(t), attention_mask)  # x_t經過reverse guided diffusion的還原
+        model_output = model.model.diffusion_reverse(x_t, self._scale_timesteps(t), attention_mask)  
         assert model_output.shape == target.shape == x_start.shape
         
         # terms["mse"] = mean_flat((target - model_output) ** 2)
