@@ -8,9 +8,9 @@ from tqdm import tqdm
 import numpy as np
 import torch
 from tqdm import tqdm, trange
-from models.diffusion_model import DiffusionRecModel 
+from models.cadirec import CaDiRec 
 from models.gaussian_diffusion import SpacedDiffusion,space_timesteps
-from utils import get_full_sort_score, EarlyStopping, args_to_dict, load_defaults_config
+from utils import get_full_sort_score, EarlyStopping
 from models import gaussian_diffusion as gd
 from .step_sample import UniformSampler
 from models.rounding import denoised_fn_round
@@ -37,7 +37,7 @@ class Trainer:
         
 
     def _create_model(self):
-        self.model = DiffusionRecModel(self.device, self.args)
+        self.model = CaDiRec(self.device, self.args)
         self.model.to(self.device)
         
         betas = gd.get_named_beta_schedule(self.args.noise_schedule, self.args.diffusion_steps)

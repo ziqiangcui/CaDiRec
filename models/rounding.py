@@ -1,5 +1,4 @@
 import torch
-
 import numpy as np
 
 def get_knn(model_emb, text_emb, dist='cos'):

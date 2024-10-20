@@ -1,6 +1,3 @@
-# import sys 
-# sys.path.append("..") 
-# sys.path.append(".") 
 import numpy as np
 import torch
 import torch.nn as nn
@@ -8,7 +5,6 @@ import torch.nn.functional as F
 from types import SimpleNamespace
 from utils import q_xt_x0, p_xt
 from .modules import DiffNet, TransformerEncoder, info_nce, mask_correlated_samples
-# from huggingface.src.transformers.models.deberta.modeling_deberta import DebertaEncoder
 from transformers.models.deberta.modeling_deberta import DebertaEncoder
 from torch.nn import BCEWithLogitsLoss, CrossEntropyLoss, MSELoss
 import torch as th
@@ -18,10 +14,10 @@ from utils import (
     timestep_embedding
 )
 
-class DiffusionRecModel(nn.Module):
+class CaDiRec(nn.Module):
 
     def __init__(self, device, args):
-        super(DiffusionRecModel, self).__init__()
+        super(CaDiRec, self).__init__()
         self.item_size = args.item_size
         self.batch_size = args.train_batch_size
         self.hidden_size = args.hidden_size
@@ -140,8 +136,7 @@ class DiffusionRecModel(nn.Module):
         h = h.type(x.dtype)
         return h
 
- 
-    # *****************model same as SASRec********************    
+  
     
     def add_position_embedding(self, sequence, seq_emb=None):
 
@@ -231,11 +226,8 @@ class DiffusionRecModel(nn.Module):
         extended_attention_mask = self.get_extended_attention_mask(aug_seq1)
         aug_seq1_emb = self.add_position_embedding(aug_seq1, emb1)
         seq1_output = self.forward(aug_seq1_emb, extended_attention_mask)[:,-1,:]
-        # print("debug seq1_output", seq1_output.shape)
-        
         aug_seq2_emb = self.add_position_embedding(aug_seq2, emb2)
         seq2_output = self.forward(aug_seq2_emb, extended_attention_mask)[:,-1,:]
-        # print("debug seq2_output", seq2_output.shape)
         
         nce_logits, nce_labels = info_nce(seq1_output, seq2_output, temp=self.args.temperature, batch_size=aug_seq1.shape[0], sim="dot")
         nce_loss = self.nce_fct(nce_logits, nce_labels)

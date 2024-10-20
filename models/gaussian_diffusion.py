@@ -1,6 +1,5 @@
 import enum
 import math
-
 import numpy as np
 import torch as th
 import sys
@@ -1035,14 +1034,8 @@ class _WrappedModel:
         self.original_num_steps = original_num_steps
 
     def __call__(self, x, ts, att_mask, **kwargs):
-        # print(ts)
         map_tensor = th.tensor(self.timestep_map, device=ts.device, dtype=ts.dtype)
         new_ts = map_tensor[ts]
-        # print(new_ts)
         if self.rescale_timesteps:
             new_ts = new_ts.float() * (1000.0 / self.original_num_steps)
-        # temp = self.model(x, new_ts, **kwargs)
-        # print(temp.shape)
-        # return temp
-        # print(new_ts)
         return self.model(x, new_ts, att_mask, **kwargs)
