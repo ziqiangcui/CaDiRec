@@ -11,7 +11,7 @@ The code is implemented based on DDPM (https://github.com/lucidrains/denoising-d
 
 You can refer to `requirements.txt` for the experimental environment we set to use.
 
-## Run CoLaKG
+## Run CaDiRec
 Simply use:
 
 `python main.py`
