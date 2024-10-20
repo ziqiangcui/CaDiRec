@@ -13,7 +13,6 @@ from models.gaussian_diffusion import SpacedDiffusion,space_timesteps
 from utils import get_full_sort_score, EarlyStopping
 from models import gaussian_diffusion as gd
 from .step_sample import UniformSampler
-from models.rounding import denoised_fn_round
 
 class Trainer:
     def __init__(self, args, device, generator):

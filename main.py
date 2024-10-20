@@ -2,7 +2,7 @@ import os
 import torch
 from tqdm import tqdm
 from data_generators.data_generator import DataGenerator
-from CaDiRec.trainers.trainer import Trainer 
+from trainers.trainer import Trainer 
 from utils import set_seed
 from configs.sasrec_diffusion_config import get_config
 import os
