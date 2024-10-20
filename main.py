@@ -4,7 +4,7 @@ from tqdm import tqdm
 from data_generators.data_generator import DataGenerator
 from trainers.trainer import Trainer 
 from utils import set_seed
-from configs.sasrec_diffusion_config import get_config
+from configs.cadirec_config import get_config
 import os
 
 

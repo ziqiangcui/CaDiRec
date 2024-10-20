@@ -4,8 +4,8 @@ from typing import Optional, Tuple, Union, List
 def get_config():
     parser = argparse.ArgumentParser()
     #************SASRec*******************
-    parser.add_argument('--gpu_id', type=int, default=0, help='gpu')
-    parser.add_argument("--dataset", default="Toys_and_Games", choices=['ml-1m', 'Beauty', 'Sports_and_Outdoors', 'Yelp','LastFM', 'Toys_and_Games'], help="Choose the dataset")
+    parser.add_argument('--gpu_id', type=int, default=1, help='gpu')
+    parser.add_argument("--dataset", default="ml-1m", choices=['ml-1m', 'Beauty', 'Sports_and_Outdoors', 'Yelp','LastFM', 'Toys_and_Games'], help="Choose the dataset")
     parser.add_argument("--model_name", default="diffsas", help="Choose the model")
     parser.add_argument("--model_idx", default="0", help="Choose the idx")
     parser.add_argument("--data_path", default="./data/", help="Choose the dataset path")
@@ -23,25 +23,25 @@ def get_config():
     parser.add_argument('--n_heads', type=int, default=2, help='Number of attention heads')
     parser.add_argument('--hidden_size', type=int, default=64, help='Hidden size (embedding size)')
     parser.add_argument('--inner_size', type=int, default=128, help='Dimensionality in feed-forward layer')
-    parser.add_argument('--sasrec_dropout_prob', type=float, default=0.5, help='Hidden dropout probability of SASRec')
-    parser.add_argument('--attn_dropout_prob', type=float, default=0.5, help='Hidden dropout probability of SASRec')
+    parser.add_argument('--sasrec_dropout_prob', type=float, default=0.1, help='Hidden dropout probability of SASRec')
+    parser.add_argument('--attn_dropout_prob', type=float, default=0.1, help='Hidden dropout probability of SASRec')
     parser.add_argument('--hidden_act', type=str, default='gelu', help='Activation function for hidden layers')
     parser.add_argument('--layer_norm_eps', type=float, default=1e-12, help='Epsilon value for layer normalization')
 
     parser.add_argument('--initializer_range', type=float, default=0.02, help='Initializer range for model parameters')
     parser.add_argument('--loss_type', type=str, default='BPR', help='Type of loss function')
-    parser.add_argument('--max_seq_length', type=int, default=50, help='max sequence length')
+    parser.add_argument('--max_seq_length', type=int, default=200, help='max sequence length')
     
     parser.add_argument('--temperature', type=float, default=1.0, help='temperature for nce loss')
     parser.add_argument('--seed', type=int, default=2024, help='random seed')
     
 
-    # #*************Diffusion***************
+    # #*************DiffuBert***************
     parser.add_argument("--num_hidden_layers", type=int, default=1, help='num_hidden_layers.')
     parser.add_argument("--intermediate_size", type=int, default=128, help='intermediate_size.')
     parser.add_argument("--num_attention_heads", type=int, default=2, help='num_attention_heads.')
     parser.add_argument("--attention_probs_dropout_prob", type=float, default=0.2, help='attention_probs_dropout_prob.')
-    parser.add_argument("--max_position_embeddings", type=int, default=50, help='max_position_embeddings.')
+    parser.add_argument("--max_position_embeddings", type=int, default=200, help='max_position_embeddings.')
     parser.add_argument("--max_relative_positions", type=int, default=-1, help='max_relative_positions.')
     parser.add_argument("--type_vocab_size", type=int, default=0, help='type_vocab_size.')
     parser.add_argument("--hidden_dropout_prob", type=float, default=0.2, help='hidden_dropout_prob.')
@@ -52,16 +52,16 @@ def get_config():
     parser.add_argument("--relative_attention", type=bool, default=True, help='relative_attention')
     parser.add_argument("--position_biased_input", type=bool, default=False, help='position_biased_input')
     
-    # loss
+    # loss ratio
     parser.add_argument('--alpha', type=float, default=0.1, help='ratio of constrastive learning loss')
-    parser.add_argument('--beta', type=float, default=0.2, help='ratio of diffusion nll loss')
+    parser.add_argument('--beta', type=float, default=0.1, help='ratio of diffusion nll loss')
     parser.add_argument('--gamma', type=float, default=0.0, help='ratio of diffusion mse loss')
-    parser.add_argument('--mlm_probability_train', type=float, default=0.2, help='mlm_probability for train')
-    parser.add_argument('--mlm_probability', type=float, default=0.2, help='mlm_probability')
+    parser.add_argument('--mlm_probability_train', type=float, default=0.1, help='mlm_probability for train')
+    parser.add_argument('--mlm_probability', type=float, default=0.1, help='mlm_probability')
     
     parser.add_argument("--batch_size", type=int, default=256)
     parser.add_argument("--microbatch", type=int, default=0)
-    # parser.add_argument("--learning_steps", type=int, default=320000)
+    parser.add_argument("--learning_steps", type=int, default=320000)
     parser.add_argument("--ema_rate", type=float, default=1.0)
     parser.add_argument("--resume_checkpoint", default="none")
     parser.add_argument("--schedule_sampler", default="lossaware")
@@ -71,7 +71,7 @@ def get_config():
     parser.add_argument("--timestep_respacing", default="")
     parser.add_argument("--use_plm_init", default="no")
     parser.add_argument("--notes", default="folder-notes")
-    parser.add_argument("--seq_len", type=int, default=50)
+    parser.add_argument("--seq_len", type=int, default=200)
     parser.add_argument("--dropout", type=float, default=0.1)
     parser.add_argument("--use_fp16", type=bool, default=False)
     parser.add_argument("--fp16_scale_growth", type=float, default=0.001)

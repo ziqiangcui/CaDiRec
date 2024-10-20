@@ -16,6 +16,8 @@ Simply use:
 
 `python main.py`
 
+For the ml-1m dataset, the recommended hyperparameters can be found in configs/cadirec_config_ml.py. For other datasets, please refer to configs/cadirec_config.py for the recommended hyperparameters.
+
 ## Citation
 Please kindly cite our work if you find our paper or codes helpful.
 ```

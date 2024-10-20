@@ -37,7 +37,6 @@ class CaDiRec(nn.Module):
         
         self.item_embedding = torch.nn.Embedding(args.item_size, args.hidden_size, padding_idx=0)
         self.position_embedding = nn.Embedding(self.max_seq_length, self.hidden_size)
-        # self.place_embedding = nn.Embedding(1, args.hidden_size)
 
         self.nce_fct = nn.CrossEntropyLoss()
         self.rec_trm_encoder = TransformerEncoder(
