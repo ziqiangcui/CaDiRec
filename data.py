@@ -218,12 +218,6 @@ class DataCollatorForDiffusion:
         masked_inputs2 = inputs.clone()
         masked_indices2 = self.generate_masked_indices(masked_inputs2)
         masked_inputs2[masked_indices2] = self.mask_id
-        # n_sample = int(masked_indices.sum()) # 15% --320
-        # print("debug inputs", inputs)
-        # print("debug masked_inputs1", masked_inputs1)
-        # print("debug masked_inputs2", masked_inputs2)
-        # print("debug labels", labels)
-        # print("debug seq_len", seq_len)
        
         return {"input_ids": inputs.long(), "masked_inputs1": masked_inputs1.long(), "masked_inputs2": masked_inputs2.long(), 
                 "attention_mask":attention_mask.float(),
@@ -293,7 +287,7 @@ class SASRecDataset(Dataset):
         if self.data_type == "train":
             input_ids = items[:-3]
             target_pos = items[1:-2]
-            answer = [0]  # no use
+            answer = [0]  
 
         elif self.data_type == "valid":
             input_ids = items[:-2]

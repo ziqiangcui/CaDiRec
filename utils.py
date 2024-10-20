@@ -1,20 +1,10 @@
 import math 
-import torch.nn as nn
 import torch 
 import numpy as np
 from scipy.sparse import csr_matrix
 import random
-import json
+import torch.nn as nn
 
-def load_defaults_config():
-    """
-    Load defaults for training args.
-    """
-    with open('/home/cuiziqiang/myRecDiffusion_v2/configs/diffusion_config.json', 'r') as f:
-        return json.load(f)
-
-def args_to_dict(args, keys):
-    return {k: getattr(args, k) for k in keys}
 
 def set_seed(seed):
     '''Fix all of random seed for reproducible training'''
@@ -71,9 +61,6 @@ def get_full_sort_score(epoch, answers, pred_list):
             "HIT@20": '{:.4f}'.format(recall[3]), "NDCG@20": '{:.4f}'.format(ndcg[3])
         }
         print(post_fix)
-        # with open(self.args.log_file, 'a') as f:
-        #     f.write(str(post_fix) + '\n')
-        # return [recall[0], ndcg[0], recall[1], ndcg[1], recall[3], ndcg[3]], str(post_fix)
         
         
         
@@ -245,25 +232,11 @@ class EarlyStopping:
         torch.save(model.state_dict(), self.checkpoint_path)
         self.score_min = score
         
-        
-        
-import math
 
-import torch as th
-import torch.nn as nn
-import copy
-import math
 
-import numpy as np
-import torch
-import torch.nn as nn
-import torch.nn.functional as fn
-from torch.nn.init import normal_
-
-# PyTorch 1.7 has SiLU, but we support PyTorch 1.5.
 class SiLU(nn.Module):
     def forward(self, x):
-        return x * th.sigmoid(x)
+        return x * torch.sigmoid(x)
 
 
 class GroupNorm32(nn.GroupNorm):
@@ -287,11 +260,11 @@ def timestep_embedding(timesteps, dim, max_period=10000):
     :return: an [N x dim] Tensor of positional embeddings.
     """
     half = dim // 2
-    freqs = th.exp(
-        -math.log(max_period) * th.arange(start=0, end=half, dtype=th.float32) / half
+    freqs = torch.exp(
+        -math.log(max_period) * torch.arange(start=0, end=half, dtype=torch.float32) / half
     ).to(device=timesteps.device)
     args = timesteps[:, None].float() * freqs[None]
-    embedding = th.cat([th.cos(args), th.sin(args)], dim=-1)
+    embedding = torch.cat([torch.cos(args), torch.sin(args)], dim=-1)
     if dim % 2:
-        embedding = th.cat([embedding, th.zeros_like(embedding[:, :1])], dim=-1)
+        embedding = torch.cat([embedding, torch.zeros_like(embedding[:, :1])], dim=-1)
     return embedding

@@ -11,8 +11,6 @@ import os
 def main():
     args = get_config()
     set_seed(args.seed) 
-    # os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID" 
-    # os.environ["CUDA_VISIBLE_DEVICES"]= str(args.gpu_id)
     device = torch.device("cuda:"+str(0) if torch.cuda.is_available() else "cpu")
     print(device)
     args_str = f"{args.model_name}-{args.dataset}-{args.model_idx}"

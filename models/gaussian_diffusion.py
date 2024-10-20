@@ -645,7 +645,6 @@ class GaussianDiffusion:
         # decoder_nll = self._token_discrete_loss(x_start[attention_mask.bool()], get_logits, input_ids_x[attention_mask.bool()]) # embedding regularization
         
         terms["nll"] = self._token_discrete_loss(model_out_x_start, get_logits, input_ids_x, mask=input_ids_mask, truncate=True, t=t) # x_0->model_out_x_start
-        # print("====debug model_out_x_start", model_out_x_start.shape)
         
         # ========================generate samples================================
         logits = self.model.model.get_logits(model_out_x_start)

@@ -80,19 +80,14 @@ class DiffNet(nn.Module):
     def forward(self, x, t, guide):
  
         # timestep embedding
-
         temb = self.temb_mlp(t.reshape(-1))
         temb = temb.reshape(t.shape[0], t.shape[1], -1)  #(B,L,h)
-        # print("x", x.shape)
-        # print("temb", temb.shape)
-        # print("guide", guide.shape)
       
         # get the guide vector
         input = torch.cat([x, temb, guide], axis=-1)
         # print("input", input.shape)
 
         h = self.diffuser(input)
-        # print("h", h.shape)
 
         return h
 

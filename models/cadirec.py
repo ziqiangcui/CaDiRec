@@ -2,11 +2,9 @@ import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from types import SimpleNamespace
-from utils import q_xt_x0, p_xt
-from .modules import DiffNet, TransformerEncoder, info_nce, mask_correlated_samples
+from .modules import TransformerEncoder, info_nce
 from transformers.models.deberta.modeling_deberta import DebertaEncoder
-from torch.nn import BCEWithLogitsLoss, CrossEntropyLoss, MSELoss
+from torch.nn import  CrossEntropyLoss
 import torch as th
 from utils import (
     SiLU,
