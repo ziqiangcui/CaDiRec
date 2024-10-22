@@ -16,7 +16,9 @@ Simply use:
 
 `python main.py`
 
-For the ml-1m dataset, the recommended hyperparameters can be found in configs/cadirec_config_ml.py. For other datasets, please refer to configs/cadirec_config.py for the recommended hyperparameters.
+For the ml-1m dataset, the general hyperparameters can be found in configs/cadirec_config_ml.py. For other datasets, please refer to configs/cadirec_config.py for the hyperparameters.
+
+For hyperparameter tuning, please adjust the following parameters (alpha, beta, rho (mlm_probability_train and mlm_probability)) within the range of 0.05 to 0.2 for different datasets.
 
 ## Citation
 Please kindly cite our work if you find our paper or codes helpful.
