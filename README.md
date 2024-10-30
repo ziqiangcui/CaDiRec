@@ -23,10 +23,11 @@ For hyperparameter tuning, please adjust the following parameters (alpha, beta, 
 ## Citation
 Please kindly cite our work if you find our paper or codes helpful.
 ```
-@article{cui2024diffusion,
-  title={Diffusion-based Contrastive Learning for Sequential Recommendation},
+@inproceedings{cui2024context,
+  title={Context Matters: Enhancing Sequential Recommendation with Context-aware Diffusion-based Contrastive Learning},
   author={Cui, Ziqiang and Wu, Haolun and He, Bowei and Cheng, Ji and Ma, Chen},
-  journal={arXiv preprint arXiv:2405.09369},
+  booktitle={Proceedings of the 33rd ACM International Conference on Information and Knowledge Management},
+  pages={404--414},
   year={2024}
 }
 ```
