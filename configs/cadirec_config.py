@@ -37,7 +37,7 @@ def get_config():
     
 
     # #*************Diffusion***************
-    parser.add_argument("--num_hidden_layers", type=int, default=2, help='num_hidden_layers.')
+    parser.add_argument("--num_hidden_layers", type=int, default=2, help='num_hidden_layers for the bert encoder.')
     parser.add_argument("--intermediate_size", type=int, default=128, help='intermediate_size.')
     parser.add_argument("--num_attention_heads", type=int, default=2, help='num_attention_heads.')
     parser.add_argument("--attention_probs_dropout_prob", type=float, default=0.2, help='attention_probs_dropout_prob.')
