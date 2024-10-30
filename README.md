@@ -14,7 +14,7 @@ You can refer to `requirements.txt` for the experimental environment we set to u
 ## Run CaDiRec
 Simply use:
 
-`python main.py`
+`CUDA_VISIBLE_DEVICES=0 python main.py`
 
 For the ml-1m dataset, the general hyperparameters can be found in configs/cadirec_config_ml.py. For other datasets, please refer to configs/cadirec_config.py for the hyperparameters.
 
