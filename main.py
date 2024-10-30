@@ -11,7 +11,7 @@ import os
 def main():
     args = get_config()
     set_seed(args.seed) 
-    device = torch.device("cuda:"+str(0) if torch.cuda.is_available() else "cpu")
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(device)
     args_str = f"{args.model_name}-{args.dataset}-{args.model_idx}"
     checkpoint = args_str + ".pt"

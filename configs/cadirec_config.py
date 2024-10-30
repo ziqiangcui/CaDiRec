@@ -5,13 +5,13 @@ def get_config():
     parser = argparse.ArgumentParser()
     #************SASRec*******************
     parser.add_argument('--gpu_id', type=int, default=0, help='gpu')
-    parser.add_argument("--dataset", default="Toys_and_Games", choices=['ml-1m', 'Beauty', 'Sports_and_Outdoors', 'Yelp', 'Toys_and_Games'], help="Choose the dataset")
+    parser.add_argument("--dataset", default="Beauty", choices=['ml-1m', 'Beauty', 'Sports_and_Outdoors', 'Yelp', 'Toys_and_Games'], help="Choose the dataset")
     parser.add_argument("--model_name", default="diffsas", help="Choose the model")
     parser.add_argument("--model_idx", default="0", help="Choose the idx")
     parser.add_argument("--data_path", default="./data/", help="Choose the dataset path")
     parser.add_argument("--output_dir", default="./saved_models/", help="save the model")
     parser.add_argument("--check_path", default='', type=str,help="the save path of checkpoints for different running")
-    parser.add_argument('--epochs', type=int, default=300, help='Number of training epochs')
+    parser.add_argument('--epochs', type=int, default=400, help='Number of training epochs')
     parser.add_argument('--warm_up_epochs', type=int, default=-1, help='Number of warmup epochs')
     parser.add_argument('--filter_num', type=int, default=5, help='filter_num')
     parser.add_argument('--train_batch_size', type=int, default=256, help='Batch size for training')
@@ -37,7 +37,7 @@ def get_config():
     
 
     # #*************Diffusion***************
-    parser.add_argument("--num_hidden_layers", type=int, default=1, help='num_hidden_layers.')
+    parser.add_argument("--num_hidden_layers", type=int, default=2, help='num_hidden_layers.')
     parser.add_argument("--intermediate_size", type=int, default=128, help='intermediate_size.')
     parser.add_argument("--num_attention_heads", type=int, default=2, help='num_attention_heads.')
     parser.add_argument("--attention_probs_dropout_prob", type=float, default=0.2, help='attention_probs_dropout_prob.')
@@ -55,8 +55,8 @@ def get_config():
     parser.add_argument('--alpha', type=float, default=0.1, help='ratio of constrastive learning loss')
     parser.add_argument('--beta', type=float, default=0.2, help='ratio of diffusion nll loss')
     parser.add_argument('--gamma', type=float, default=0.0, help='ratio of diffusion mse loss')
-    parser.add_argument('--mlm_probability_train', type=float, default=0.2, help='mlm_probability for train')
-    parser.add_argument('--mlm_probability', type=float, default=0.2, help='mlm_probability')
+    parser.add_argument('--mlm_probability_train', type=float, default=0.1, help='mlm_probability for train')
+    parser.add_argument('--mlm_probability', type=float, default=0.1, help='mlm_probability')
     
     parser.add_argument("--batch_size", type=int, default=256)
     parser.add_argument("--microbatch", type=int, default=0)
